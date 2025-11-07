@@ -1,0 +1,90 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(45deg, #3498db, #2ecc71); /* Gradient background */
+  margin: 0;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none; /* Allow clicking through the pattern layer */
+  z-index: -1; /* Place the pattern behind the content */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  z-index: 1; /* Ensure h1 appears above the background */
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Defines a 3-column layout */
+  gap: 0.1cm; /* Set the spacing between posts to 0.1cm */
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 1; /* Ensure the grid appears above the background */
+}
+
+.post {
+  background-color: rgb(0, 0, 0); /* Set white background for posts */
+  border: 1px solid #000000;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.post:hover {
+  transform: scale(1.05);
+}
+
+.post::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none; /* Allow clicking through the pattern layer */
+}
+
+/* Style for image posts (1:1 aspect ratio) */
+.image-post img {
+  width: 100%;
+  aspect-ratio: 1/1; /* Square aspect ratio for images */
+}
+
+/* Style for video posts (9:16 aspect ratio) */
+.video-post video {
+  width: 100%;
+  aspect-ratio: 9/16; /* Vertical aspect ratio for videos */
+}
+
+.post-description {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.post a {
+  text-decoration: none;
+  color: #333;
+}

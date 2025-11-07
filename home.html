@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RECIPI-VLOGS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="nav-left">
+                <img class="logo" src="./piictures/Food Hub.png" alt="RECIPI LOGO">
+            </div>
+
+            <!-- Tabs (Radio buttons) -->
+            <div class="container">
+                <div class="tabs">
+                    <input type="radio" id="radio-1" name="tabs" checked="">
+                    <label class="tab" for="radio-1">Home<span class="notification">2</span></label>
+                    <input type="radio" id="radio-2" name="tabs">
+                    <label class="tab" for="radio-2">Discover</label>
+                    <input type="radio" id="radio-3" name="tabs">
+                    <label class="tab" for="radio-3">Updates</label>
+                    <span class="glider"></span>
+                </div>
+            </div>
+
+            <!-- Search Box and Filter Button -->
+            <div class="nav-right">
+                <div class="searchBox">
+                    <input type="text" class="searchInput" placeholder="Search">
+                    <button class="searchButton">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23 21L16.6569 14.6569" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="11" cy="11" r="8" stroke="#fff" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Filter button -->
+                <button title="filter" class="filter" onclick="settingsMenuToggle()">
+                    <svg viewBox="0 0 512 512" height="1em">
+                        <path d="M0 416c0 17.7 14.3 32 32 32l54.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 448c17.7 0 32-14.3 32-32s-14.3-32-32-32l-246.7 0c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48L32 384c-17.7 0-32 14.3-32 32zm128 0a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM320 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm32-80c-32.8 0-61 19.7-73.3 48L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l246.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-54.7 0c-12.3-28.3-40.5-48-73.3-48zM192 128a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm73.3-64C253 35.7 224.8 16 192 16s-61 19.7-73.3 48L32 64C14.3 64 0 78.3 0 96s14.3 32 32 32l86.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 128c17.7 0 32-14.3 32-32s-14.3-32-32-32L265.3 64z"></path>
+                    </svg>
+                </button>
+
+            <!-- Settings menu -->
+            <div class="settings-menu" id="subMenu">
+                <div id="dark-btn">
+                    <span></span>
+                </div>
+                <div class="settings-menu-inner">
+                    <!-- Replacing user profile with an Avatar component -->
+                    <div class="user-profile">
+                        <!-- Avatar -->
+                        <div class="avatar">
+                            <img class="avatar-image" src="./piictures/avatar.png" alt="User Avatar">
+                            <div class="avatar-fallback">CN</div>
+                        </div>
+                            <p>User Name</p>
+                            <a href="#">See your profile</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="user-profile">
+                        <img src="./piictures/cloves.jpeg" alt="">
+                        <div>
+                            <p>Give Feedback</p>
+                            <a href="#">Help us to improve the new design</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="settings-links">
+                        <a href="#">Settings & Privacy <img src="./piictures/Garam Masala.jpeg" width="10px" alt=""></a>
+                    </div>
+                    <div class="settings-links">
+                        <img class="settings-icon" src="./piictures/cinnamon.jpeg" alt="">
+                        <a href="#">Help & Support <img src="./piictures/fenugreek(methi).jpeg" width="10px" alt=""></a>
+                    </div>
+                    <div class="settings-links">
+                        <img class="settings-icon" src="./piictures/cloves.jpeg" alt="">
+                        <a href="#">Display & Accessibility <img src="./piictures/saffron.jpeg" width="10px" alt=""></a>
+                    </div>
+                    <div class="settings-links">
+                        <img class="settings-icon" src="./piictures/spices.jpeg" alt="">
+                        <a href="/registrations">register <img src="./piictures/Asafoetida.jpeg" width="10px" alt=""></a>
+                    </div>
+                    <div class="settings-links">
+                        <img class="settings-icon" src="./piictures/cloves.jpeg" alt="">
+                        <a href="#">Display & Accessibility <img src="./piictures/saffron.jpeg" width="10px" alt=""></a>
+                    </div>
+                    <div class="settings-links"></div>
+                        <img class="settings-icon" src="./piictures/spices.jpeg" alt="">
+                        <a href="#">Logout<img src="./piictures/Asafoetida.jpeg" width="10px" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- ---------Left Sidebar ------------ -->
+        <div class="left-sidebar">
+            <div class="imp-links">
+                <a href="./spices.html"><img src="./piictures/spices.jpeg" alt="" /> Spices </a>
+                <a href="./herbs.html"><img src="./piictures/cumin.jpeg.jpeg" alt="" /> Herbs </a>
+                <a href="#"><img src="./piictures/saffron.jpeg" alt="" /> Post </a>
+                <a href="#"><img src="./piictures/pexels-peter-olexa-3875821.jpg" alt="" /> Marketplace
+                </a>
+                <a href="#">See More</a>
+            </div>
+            <div class="shortcut-links">
+                <p>Discover New</p>
+                <a href="#"><img src="./piictures/spices.jpeg" alt="" /> Traditional Flavours</a>
+                <a href="#"><img src="./piictures/pexels-pixabay-459225.jpg" alt="" /> New Cuisines</a>
+           </div>
+        </div>
+
+        
+        <div class="main-content" ">
+            <div class="story-gallery">
+
+                <div class="story story1">
+                </div>
+
+                <div class="story story2">
+                    <img src="./piictures/doggy.jpeg" alt="" />
+                    <p>Bat</p>
+                </div>
+                <div class="story story3">
+                    <img src="./piictures/doggy2.jpeg" alt="" />
+                    <p>Cat</p>
+                </div>
+                <div class="story story4">
+                    <img src="./piictures/doggy3.jpeg" alt="" />
+                    <p>Rat</p>
+                </div>
+                <div class="story story5">
+                    <img src="./piictures/dogyy5.png" alt="" />
+                    <p>Hat</p>
+                </div>
+
+            </div>
+        
+            <div class="write-post-container">
+
+                <div class="user-profile">
+                    <img src="C:\New folder\site code 3\doggy.jpeg" alt="" />
+                    <div>
+                        <p>Doggy_1</p>
+                        <small>Septemper 26 2022, 13:58 <i class="fa-solid fa-caret-down"></i></small>
+                    </div>
+                </div>
+
+                <div class="post-input-container">
+                    <textarea rows="3" placeholder="Join me in my cookin classes "></textarea>
+                    <div class="add-post-links">
+                        <a href="#"><img src="C:\New folder\site code 3\piictures\like.png" alt="" /> Like</a>
+                        <a href="#"><img src="C:\New folder\site code 3\piictures\comment.png"  alt="" /> Comments</a>
+                        <a href="#"><img src="C:\New folder\site code 3\piictures\share.png" alt="" />Share</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="post-container">
+                <div class="post-row">
+
+                    <div class="user-profile">
+                        <img src="./piictures/doggy.jpeg" alt="" />
+                        <div>
+                            <p>Doggy_2</p>
+                            <span>August 26 2022, 13:58 </span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+
+                </div>
+
+                <p class="post-text">
+                    Tried cooking hot and sour chicken sout
+                    Must watch recipi guys! Check my YouTube<a href="https://youtu.be/XSF9AOx7sdU?si=fFgSxyvVUttTjjMI">#youtube</a>
+                </p>
+                <img class="post-img" src="./piictures/post2.jpg" alt="" />
+
+                <div class="post-row">
+                    <div class="activity-icons">
+                        <div><img src="C:\New folder\site code 3\piictures\like.png" alt="" /> Like</div>
+                        <div><img src="C:\New folder\site code 3\piictures\comment.png"  alt="" /> Comments</div>
+                        <div><img src="C:\New folder\site code 3\piictures\share.png" alt="" /> Share</div>
+                    </div>
+                    <div class="post-profile-icon">
+                        <img src="./piictures/coriander.jpeg.jpg" alt="" />
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="post-container">
+                <div class="post-row">
+
+                    <div class="user-profile">
+                        <img src="./piictures/doggy2.jpeg" alt="" />
+                        <div>
+                            <p>Sheru@420</p>
+                            <span>August 15 1947, 00:01 </span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+
+                </div>
+
+                <p class="post-text">
+                    Check out my new list on mustard, its verities and its producers
+                    <a href="#">#Discovernew</a>
+                    <a href="#">#Explorer</a>
+                </p>
+                <img class="post-img" src="./piictures/mustard.jpeg" alt="" />
+
+                <div class="post-row">
+                    <div class="activity-icons">
+                        <div><img src="C:\New folder\site code 3\piictures\like.png" alt="" /> Like</div>
+                        <div><img src="C:\New folder\site code 3\piictures\comment.png"  alt="" /> Comments</div>
+                        <div><img src="C:\New folder\site code 3\piictures\share.png" alt="" /> Share</div>
+                    </div>
+                    <div class="post-profile-icon">
+                        <img src="./piictures/coriander.jpeg.jpg" alt="" />
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="post-container">
+                <div class="post-row">
+
+                    <div class="user-profile">
+                        <img src="C:\New folder\site code 3\piictures\dogyy5.png" alt="" />
+                        <div>
+                            <p>Cat_slimshady</p>
+                            <span>Austin, Downtown </span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+
+                </div>
+
+                <p class="post-text">
+                    Owner of the biggest spice chain in the whole Australian and American market. Want to know my secret? follow->
+                    <a href="#">slimshady.org</a>
+                    <a href="#">#YouTube</a>
+                </p>
+                <img class="post-img" src="./piictures/bruce.jpg" alt="" />
+
+                <div class="post-row">
+                    <div class="activity-icons">
+                        <div><img src="C:\New folder\site code 3\piictures\like.png" alt="" /> Like</div>
+                        <div><img src="C:\New folder\site code 3\piictures\comment.png"  alt="" /> Comments</div>
+                        <div><img src="C:\New folder\site code 3\piictures\share.png" alt="" /> Share</div>
+                    </div>
+                    <div class="post-profile-icon">
+                        <img src="./piictures/pexels-pixabay-459225.jpg" alt="" />
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="post-container">
+                <div class="post-row">
+
+                    <div class="user-profile">
+                        <img src="C:\New folder\site code 3\piictures\Screenshot 2024-09-26 151148.png" alt="" />
+                        <div>
+                            <p>Arkham_Knight</p>
+                            <span>Gotham city </span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+
+                </div>
+
+                <p class="post-text">
+                    Check out my new bat theme shepherd's pie recipi!
+                </p>
+                <img class="post-img" src="./piictures/batman pie.jpeg" alt="" />
+
+                <div class="post-row">
+                    <div class="activity-icons">
+                        <div><img src="C:\New folder\site code 3\piictures\like.png" alt="" /> LIKE</div>
+                        <div><img src="C:\New folder\site code 3\piictures\comment.png"  alt="" /> Comments</div>
+                        <div><img src="C:\New folder\site code 3\piictures\share.png"" alt="" /> Share</div>
+                    </div>
+                    <div class="post-profile-icon">
+                        <img src="./piictures/turmeric.jpeg" alt="" />
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="post-container">
+                <div class="post-row">
+
+                    <div class="user-profile">
+                        <img src="C:\New folder\site code 3\piictures\Screenshot 2024-09-26 152712.png" alt="" />
+                        <div>
+                            <p>Ester_Choi.mocbar</p>
+                            <span>La, NYC </span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+
+                </div>
+
+                <p class="post-text">
+                    Hey guys! This is your pro chef Ester and today I am gonna share my fried rice 
+                    recipi with you all. Hope you like it... Peace!.
+                    <a href="#">Recipi</a>
+                    <a href="#">#YouTubeChannel</a>
+                </p>
+                <img class="post-img" src="./piictures/Chef1.jpeg" alt="" />
+
+                <div class="post-row">
+                    <div class="activity-icons">
+                        <div><img src="C:\New folder\site code 3\piictures\like.png" alt="" /> like</div>
+                        <div><img src="C:\New folder\site code 3\piictures\comment.png" alt="" /> Comments</div>
+                        <div><img src="C:\New folder\site code 3\piictures\share.png" alt="" /> Share</div>
+                    </div>
+                    <div class="post-profile-icon">
+                        <img src="./piictures/pexels-pixabay-459225.jpg" alt="" />
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="load-more-btn">Load More</button>
+        </div>
+
+
+
+        <!-- ---------Right Sidebar ------------ -->
+        <div class="right-sidebar">
+            <div class="sidebar-title">
+                <h4>New Stuff!</h4>
+                <a href="#">See All</a>
+            </div>
+
+            <div class="event">
+                <div class="left-event">
+                    <h3>18</h3>
+                    <span>March</span>
+                </div>
+                <div class="right-event">
+                    <h4>Dominos</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Food Republic</p>
+                    <a href="#">More Info</a>
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="left-event">
+                    <h3>22</h3>
+                    <span>June</span>
+                </div>
+                <div class="right-event">
+                    <h4>Chicken Roll</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Zakir-C</p>
+                    <a href="#">More Info</a>
+                </div>
+            </div>
+            <hr/>
+            <div class="sidebar-title">
+                <h4>Extra Material</h4>
+            </div>
+    </div>
+    <script src="script.js"> </script>
+</body>
+
+</html>

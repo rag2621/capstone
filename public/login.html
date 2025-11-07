@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
+  <link rel="stylesheet" href="/style1.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="heading">Food Book</div>
+    <form class="form" id="loginForm">
+      <input required class="input" type="email" id="email" placeholder="E-mail" />
+      <input required class="input" type="password" id="password" placeholder="Password" />
+      <span id="general-error" style="color: red; font-size: 12px; display: none;"></span>
+      <span id="success-message" style="color: green; font-size: 12px; display: none;"></span>
+      <input class="login-button" type="submit" value="Login" id="submitBtn" />
+    </form>
+    <span class="agreement">
+      Don't have an account? <a href="/registrations">Register here</a>
+    </span>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const generalError = document.getElementById('general-error');
+    const successMessage = document.getElementById('success-message');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      console.log('Login form submission triggered');
+
+      generalError.style.display = 'none';
+      successMessage.style.display = 'none';
+
+      const formData = {
+        email: email.value.trim(),
+        password: password.value
+      };
+
+      if (!formData.email || !formData.password) {
+        generalError.textContent = 'Please enter both email and password';
+        generalError.style.display = 'block';
+        return;
+      }
+
+      try {
+        submitBtn.disabled = true;
+        submitBtn.value = 'Logging in...';
+
+        const response = await fetch('/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          successMessage.textContent = 'Login successful!';
+          successMessage.style.display = 'block';
+
+           localStorage.setItem('isLogin', 'true');
+          localStorage.setItem('user', email.value.trim());
+
+          setTimeout(() => {
+            window.location.href = '/home';
+          }, 1000);
+
+          form.reset();
+        } else {
+          generalError.textContent = data.message || 'Invalid credentials. Please try again.';
+          generalError.style.display = 'block';
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        generalError.textContent = 'Network error. Please try again later.';
+        generalError.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.value = 'Login';
+      }
+    });
+
+    form.querySelectorAll('.input').forEach((input) => {
+      input.addEventListener('input', () => {
+        generalError.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>
