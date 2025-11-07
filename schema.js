@@ -8,6 +8,13 @@ const User= new mongoose.Schema({
 });
 
 
+const Pro= new mongoose.Schema({
+    Name: { type: String, required: true },
+   
+    city: { type: String, required: true },
+    price: { type: Number, required: true },
+    email: { type: String, required: true },
+});
 
 
 
@@ -16,5 +23,6 @@ const User= new mongoose.Schema({
 
 module.exports = {
     User: mongoose.model('regis', User),
+    Property: mongoose.model('Property', Pro)
   
 };

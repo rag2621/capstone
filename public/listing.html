@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Property</title>
+    <link rel="stylesheet" href="/style1.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="heading">List Your Property</div>
+        <form class="form" id="propertyForm">
+            <input required class="input" type="text" id="propertyName" placeholder="Property Name">
+            <input required class="input" type="text" id="location" placeholder="Location">
+            <input required class="input" type="number" id="price" placeholder="Price (₹)">
+            <span id="general-error" style="color: red; font-size: 12px; display: none;"></span>
+            <span id="success-message" style="color: green; font-size: 12px; display: none;"></span>
+            <input class="login-button" type="submit" value="List Property" id="submitBtn">
+        </form>
+        <span class="agreement"><a href="#">Learn property listing policy</a></span>
+    </div>
+
+    <script>
+        const form = document.getElementById('propertyForm');
+        const generalError = document.getElementById('general-error');
+        const successMessage = document.getElementById('success-message');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            generalError.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            const formData = {
+                Name: document.getElementById('propertyName').value.trim(),
+                city: document.getElementById('location').value.trim(),
+                price: document.getElementById('price').value.trim(),
+                email:localStorage.getItem('user')
+            };
+
+            if (!formData.Name || !formData.city || !formData.price) {
+                generalError.textContent = 'Please fill in all fields';
+                generalError.style.display = 'block';
+                return;
+            }
+
+            if (isNaN(formData.price) || formData.price <= 0) {
+                generalError.textContent = 'Please enter a valid price';
+                generalError.style.display = 'block';
+                return;
+            }
+
+            try {
+                submitBtn.disabled = true;
+                submitBtn.value = 'Listing...';
+
+                const response = await fetch('/list', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    successMessage.textContent = 'Property listed successfully!';
+                    successMessage.style.display = 'block';
+                    form.reset();
+
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 1000);
+                } else {
+                    generalError.textContent = data.message || 'Failed to list property. Try again.';
+                    generalError.style.display = 'block';
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                generalError.textContent = 'Network error. Please try again.';
+                generalError.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.value = 'List Property';
+            }
+        });
+
+        form.querySelectorAll('.input').forEach(input => {
+            input.addEventListener('input', () => {
+                generalError.style.display = 'none';
+            });
+        });
+    </script>
+
+</body>
+</html>

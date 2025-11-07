@@ -2,7 +2,7 @@ let exp=require("express");
 let mongoose=require("mongoose");
 let server=exp();
 let url='mongodb+srv://raghavdhiman2006:123@raghav.loyrcrt.mongodb.net/'
-const {User}=require("./schema.js");
+const {User,Property}=require("./schema.js");
 let path = require("path");
 server.use(exp.json());
 server.use(exp.static(path.join(__dirname, 'public')));
@@ -10,17 +10,19 @@ mongoose.connect(url)
     .then(() => console.log(' MongoDB connected.'))
     .catch(err => console.error(' MongoDB connection error:', err));
 
-server.get('/home', (req, res) => {
+server.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
 server.get('/registrations', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'regis.html'));
 });
 server.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
-
+server.get('/listing', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'listing.html'));
+});
 server.post('/signup', async (req, res) => {
     try {
         const user = req.body;
@@ -52,5 +54,25 @@ server.post('/verify', async (req, res) => {
     }
 
  })
+
+
+server.post('/list', async (req, res) => {       
+  try {
+    const property = req.body;   // extract data from request body
+
+    // Validate required fields
+   
+
+    // Create and save a new document in MongoDB
+     const newUser = await Property.create(property);
+        console.log("Property created:", newUser);
+
+    res.status(201).send({ message: "Listing saved successfully", data: newUser });
+  } catch (err) {
+    console.error("Error saving listing:", err);
+    res.status(500).send({ message: "Failed to save listing", error: err.message });
+  }
+});
+
 
 server.listen(3039,()=>console.log("server listening on port 3000"));
